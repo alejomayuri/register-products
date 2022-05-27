@@ -1,16 +1,36 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import Modal from '../Modal'
 import './Header.css'
-import { getFirestore } from '../../service/firebase'
 import RegisterProductForm from '../RegisterProductForm'
+import useRegisterProduct from '../../hooks/useRegisterProduct'
 
 export default function Header() {
     const [showModal, setShowModal] = useState(false)
 
     const handleOpenModal = () => setShowModal(true)
 
-    const handleCloseModal = () => setShowModal(false)
+    const { logout } = useAuth();
+
+    const {
+        uploatValue,
+        prevImage,
+        showProgress,
+        disabledButton,
+        loading,
+        showForm,
+        setShowForm,
+        clearRegister,
+        handleOnChange,
+        handleOnChangeImg,
+        handleRegisterProduct
+    } = useRegisterProduct()
+
+    const handleCloseModal = () => {
+        setShowModal(false)
+        setShowForm(true)
+        clearRegister()
+    }
 
     const handleLogout = async () => {
         try {
@@ -20,29 +40,9 @@ export default function Header() {
         }
     }
 
-    const { currentUser, logout } = useAuth();
-    const FORM_STATE = {
-        nombre: '',
-        description: '',
-        usuario: ''
-    }
-    const [formData, setFormData] = useState(FORM_STATE)
-    useEffect(() => {
-        setFormData({
-            ...formData,
-            usuario: currentUser.uid
-        })
-    }, [currentUser.uid])
-    const handleOnChange = (e) => setFormData({
-        ...formData,
-        [e.target.name]: e.target.value
-    })
-    const handleRegisterProduct = (e) => {
-        e.preventDefault();
-        const db = getFirestore();
-        db.collection('productos').add(formData)
-            .then((res) => console.log(res))
-            .catch(err => console.log(err))
+    const handleAnotherRegister = () => {
+        setShowForm(true)
+        clearRegister()
     }
 
     return (
@@ -54,7 +54,27 @@ export default function Header() {
                 </div>
             </header>
             {showModal && <Modal onClose={handleCloseModal}>
-                <RegisterProductForm handleOnChange={handleOnChange} onSubmit={handleRegisterProduct} />
+                {showForm
+                    ? <RegisterProductForm
+                        disabledButton={disabledButton}
+                        showProgress={showProgress}
+                        prevImage={prevImage}
+                        uploatValue={uploatValue}
+                        handleOnChange={handleOnChange}
+                        handleOnChangeImg={handleOnChangeImg}
+                        onSubmit={handleRegisterProduct}
+                    />
+                    : <div className="loading">
+                        {loading
+                            ? <p>Registrando...</p>
+                            : <>
+                                <p>Registro exitoso</p>
+                                <button onClick={handleAnotherRegister}>Registrar otro producto</button>
+                            </>
+                        }
+                    </div>
+                }
+
             </Modal>}
         </>
     )
