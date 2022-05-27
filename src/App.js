@@ -9,21 +9,21 @@ import { PrivateRoute } from './components/PrivateRoute';
 function App() {
   return (
     <AuthProvider>
+      <ProductsProvider>
       <div className="App">
         <div className="App-header">
           <Switch>
-            <ProductsProvider>
               <PrivateRoute
                 component={Home}
                 path="/"
               />
-            </ProductsProvider>
             <Route
               component={Inicio}
               path="/inicio" />
           </Switch>
         </div>
       </div>
+      </ProductsProvider>
     </AuthProvider>
   );
 }

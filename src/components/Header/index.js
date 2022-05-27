@@ -12,24 +12,8 @@ export default function Header() {
 
     const { logout } = useAuth();
 
-    const {
-        uploatValue,
-        prevImage,
-        showProgress,
-        disabledButton,
-        loading,
-        showForm,
-        setShowForm,
-        clearRegister,
-        handleOnChange,
-        handleOnChangeImg,
-        handleRegisterProduct
-    } = useRegisterProduct()
-
     const handleCloseModal = () => {
         setShowModal(false)
-        setShowForm(true)
-        clearRegister()
     }
 
     const handleLogout = async () => {
@@ -38,11 +22,6 @@ export default function Header() {
         } catch (err) {
             console.log(err)
         }
-    }
-
-    const handleAnotherRegister = () => {
-        setShowForm(true)
-        clearRegister()
     }
 
     return (
@@ -54,27 +33,7 @@ export default function Header() {
                 </div>
             </header>
             {showModal && <Modal onClose={handleCloseModal}>
-                {showForm
-                    ? <RegisterProductForm
-                        disabledButton={disabledButton}
-                        showProgress={showProgress}
-                        prevImage={prevImage}
-                        uploatValue={uploatValue}
-                        handleOnChange={handleOnChange}
-                        handleOnChangeImg={handleOnChangeImg}
-                        onSubmit={handleRegisterProduct}
-                    />
-                    : <div className="loading">
-                        {loading
-                            ? <p>Registrando...</p>
-                            : <>
-                                <p>Registro exitoso</p>
-                                <button onClick={handleAnotherRegister}>Registrar otro producto</button>
-                            </>
-                        }
-                    </div>
-                }
-
+                <RegisterProductForm />
             </Modal>}
         </>
     )
