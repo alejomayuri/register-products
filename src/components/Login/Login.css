@@ -1,0 +1,35 @@
+.login-container h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.login-form input {
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+    padding: 4px;
+    font-size: 16px;
+}
+
+.submit-btn {
+    margin-top: 10px;
+    background-color: #8206ba;
+    border: none;
+    padding: 7px !important;
+    color: #efefef;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #630490;
+}

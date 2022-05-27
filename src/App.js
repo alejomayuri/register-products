@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { AuthProvider } from './context/AuthContext';
+import Home from './pages/Home';
+import Inicio from './pages/Inicio';
+import { Route, Switch } from 'wouter';
+import { PrivateRoute } from './components/PrivateRoute';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <div className="App-header">
+          <Switch>
+            <PrivateRoute
+              component={Home}
+              path="/"
+            />
+            <Route
+              component={Inicio}
+              path="/inicio" />
+          </Switch>
+        </div>
+      </div>
+    </AuthProvider>
   );
 }
 

@@ -1,0 +1,12 @@
+header {
+    width: 100%;
+    border-bottom: solid;
+    display: flex;
+}
+
+.button-container {
+    width: 630px;
+    justify-content: space-around;
+    display: flex;
+    margin: 10px auto;
+}

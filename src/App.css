@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+p, h2 {
+    margin: 0;
+}
+
+p, button {
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn {
+  background-color: #8206ba;
+  border: none;
+  padding: 7px !important;
+  color: #efefef;
+  cursor: pointer;
+  font-size: 16px;
+  width: 300px;
+}
+
+.btn:hover {
+  background-color: #630490;
+}
+
 .App {
   text-align: center;
 }
@@ -16,10 +40,6 @@
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
