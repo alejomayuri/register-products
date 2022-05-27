@@ -2,6 +2,8 @@ import './EditAndDeleteForm.css'
 import { useState } from 'react'
 import useFormData from '../../hooks/useFormData'
 import useEdit from '../../hooks/useEdit'
+import useDelete from '../../hooks/useDelete'
+import DeleatProductButton from '../DeleteProductButton'
 
 export default function EditAndDeletForm({
     id,
@@ -25,13 +27,22 @@ export default function EditAndDeletForm({
         price
     })
 
-    const [showForm, setShowForm] = useState(true)
-
     const { loading, handleEditProduct } = useEdit({ id: id, formData: formData })
+
+    const { loadingDelete, deleteProduct } = useDelete({ id: id })
+
+    const [showForm, setShowForm] = useState(true)
+    const [message, setMessage] = useState(true)
 
     const handleSubmit = (e) => {
         handleEditProduct(e)
         setShowForm(false)
+    }
+
+    const handleDelete = () => {
+        deleteProduct()
+        setShowForm(false)
+        setMessage(false)
     }
 
     return (
@@ -53,12 +64,17 @@ export default function EditAndDeletForm({
                             <input type="file" name='foto' onChange={handleOnChangeImg} />
                             <input className='submitProductBtn' type="submit" value='Editar producto' />
                         </form>
+                        <DeleatProductButton deleteProduct={handleDelete} />
                     </>
                     : <>
                         {
-                            loading
-                            ? <p>Actualizando producto...</p>
-                            : <p>Producto actualizado</p>
+                            message
+                                ?   loading
+                                    ? <p>Actualizando producto...</p>
+                                    : <p>Producto actualizado</p>
+                                :   loadingDelete
+                                    ? <p>Eliminando producto...</p>
+                                    : <p>Producto eliminado</p>
                         }
                     </>
             }
