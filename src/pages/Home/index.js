@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import { useAuth } from "../../context/AuthContext"
+import ListOfProducts from "../../components/ListOfProducts";
 
 export default function Home() {
     const { currentUser } = useAuth();    
@@ -7,12 +8,7 @@ export default function Home() {
     return (
         <>
             <Header />
-            {currentUser
-                ?  <>
-                    <h1>{currentUser.uid}</h1>
-                </>
-                : <h1>No estas logueado</h1>
-            }
+            <ListOfProducts />
         </>
     )
 }

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { useAuth } from "../context/AuthContext"
 import { getFirestore, getStorage } from "../service/firebase";
+import { useProductsContext } from "../context/ProductContext";
 
 const FORM_STATE = {
     name: '',
@@ -11,6 +12,8 @@ const FORM_STATE = {
 }
 
 export default function useRegisterProduct() {
+    const { updateProducts, setUpdateProducts } = useProductsContext()
+
     const { currentUser } = useAuth();
 
     const [formData, setFormData] = useState(FORM_STATE)
@@ -69,6 +72,7 @@ export default function useRegisterProduct() {
             .then((res) => {
                 console.log(res)
                 setLoading(false)
+                setUpdateProducts(!updateProducts)
             })
             .catch(err => console.log(err))
     }, [formData])
