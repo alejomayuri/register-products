@@ -16,7 +16,7 @@ You may also see any lint errors in the console.
 
 ### `Frontend`
 
-Este proyecto está desarrollado con ReacJS.
+Este proyecto está desarrollado con ReactJS.
 
 ### `Backend`
 
