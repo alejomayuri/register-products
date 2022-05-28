@@ -1,4 +1,10 @@
 import useLogin from "../../hooks/useLogin";
+import FormTitle from "../FormTitle";
+import AuthForm from "../AuthForm";
+import Label from "../Label";
+import Input from "../Input";
+import FormButton from "../FormButton";
+import LoadingText from "../LoadingText";
 
 const Login = () => {
     const {
@@ -10,22 +16,22 @@ const Login = () => {
     } = useLogin()
 
     return (
-        <div className='form-container'>
-            <h2>Iniciar sesión</h2>
+        <div>
+            <FormTitle text={'Iniciar sesión'} />
             <div>
                 {error && <p className='error'>{ error }</p>}
             </div>
             <div>
-                <form className="main-form " onSubmit={handleLogin}>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name='email' onChange={handleEmail} />
-                    <label htmlFor="contraseña">Contraseña</label>
-                    <input type="password" name='contraseña' onChange={handlePassword} />
-                    <input className='submit-btn' type="submit" value='Iniciar sesión' />
-                </form>
+                <AuthForm onSubmit={handleLogin}>
+                    <Label htmlFor='email' text='Email' />
+                    <Input type='email' name='email' onChange={handleEmail} />
+                    <Label htmlFor='contraseña' text='Contraseña' />
+                    <Input type='password' name='password' onChange={handlePassword} />
+                    <FormButton type="submit" value='Iniciar sesión' />
+                </AuthForm>
             </div>
             <div className="inicio-then-message">
-                {loading && <p>Iniciando sesión...</p>}
+                {loading && <LoadingText text={'Iniciando sesión...'} />}
             </div>
         </div>
     );

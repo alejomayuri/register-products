@@ -1,13 +1,14 @@
 import ReactDOM from 'react-dom'
+import { MainModal, ModalContainer, ModalButton } from './style'
 
 function Modal({ children, onClose }) {
     return (
-        <div className="modal">
-            <div className="modal-content">
-                <button className="modal-button" onClick={onClose}>X</button>
+        <MainModal>
+            <ModalContainer>
+                <ModalButton onClick={onClose}>X</ModalButton>
                 {children}
-            </div>
-        </div>
+            </ModalContainer>
+        </MainModal>
     )
 }
 

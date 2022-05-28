@@ -1,4 +1,10 @@
 import useRegister from "../../hooks/useRegister"
+import FormTitle from "../FormTitle"
+import AuthForm from "../AuthForm"
+import Label from "../Label"
+import Input from "../Input"
+import FormButton from "../FormButton"
+import LoadingText from "../LoadingText"
 
 export default function SingUp() {
 
@@ -12,24 +18,24 @@ export default function SingUp() {
     } = useRegister()
 
     return (
-        <div className='form-container'>
-            <h2>Registrarse</h2>
+        <div>
+            <FormTitle text={'Registrarse'} />
             <div>
                 {error && <p className='error'>{ error }</p>}
             </div>
             <div>
-                <form className="main-form" onSubmit={handleRegister}>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name='email' onChange={handleEmail} />
-                    <label htmlFor="contraseña">Contraseña</label>
-                    <input type="password" name='contraseña' onChange={handlePassword} />
-                    <label htmlFor="confirmar-contraseña">Confirmar contraseña</label>
-                    <input type="password" name='confirmar-contraseña' onChange={handleConfirmPassword} />
-                    <input className='submit-btn' type="submit" value='Registrarse' />
-                </form>
+                <AuthForm onSubmit={handleRegister}>
+                    <Label htmlFor='email' text='Email' />
+                    <Input type='email' name='email' onChange={handleEmail} />
+                    <Label htmlFor='contraseña' text='Contraseña' />
+                    <Input type='password' name='password' onChange={handlePassword} />
+                    <Label htmlFor='confirmar contraseña' text='Confirmar contraseña' />
+                    <Input type='password' name='confirmPassword' onChange={handleConfirmPassword} />
+                    <FormButton type="submit" value='Registrarse' />
+                </AuthForm>
             </div>
             <div className="inicio-then-message">
-                {loading && <p>Registrando...</p>}
+                {loading && <LoadingText text={'Registrando...'} />}
             </div>
         </div>
     )

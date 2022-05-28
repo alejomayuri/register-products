@@ -1,6 +1,8 @@
 import Modal from '../Modal'
 import { useState } from 'react'
 import EditAndDeletForm from '../EditAndDeletForm'
+import { ProductElement, ProductButton, ProductTitle, ProductImage, ProductDescription, ProductPrice } from './style'
+
 
 export default function Product({ id, name, description, price, image }) {
     const [showOptions, setShowOptions] = useState(false)
@@ -19,15 +21,15 @@ export default function Product({ id, name, description, price, image }) {
 
     return (
         <>
-            <div onMouseEnter={handleOptions} onMouseLeave={handleOptions} className="product">
+            <ProductElement onMouseEnter={handleOptions} onMouseLeave={handleOptions}>
                 {
-                    showOptions && <button onClick={handleOpenModal} className='open-product-modal-button'>︙</button>
+                    showOptions && <ProductButton onClick={handleOpenModal}>︙</ProductButton>
                 }
-                <h3>{name}</h3>
-                <img src={image} alt={name} />
-                <p>{description}</p>
-                <p className='product-price'>{`$${price}`}</p>
-            </div>
+                <ProductTitle>{name}</ProductTitle>
+                <ProductImage src={image} alt={name} />
+                <ProductDescription>{description}</ProductDescription>
+                <ProductPrice>{`$${price}`}</ProductPrice>
+            </ProductElement>
             {showModal && <Modal onClose={handleCloseModal}>
                 <EditAndDeletForm
                     id={id}

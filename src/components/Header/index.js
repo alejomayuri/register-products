@@ -3,6 +3,7 @@ import { useAuth } from '../../context/AuthContext'
 import Modal from '../Modal'
 import RegisterProductForm from '../RegisterProductForm'
 import HeaderButton from '../HeaderButton'
+import { HeaderElement, HeaderButtonsContainer } from './style'
 
 export default function Header() {
     const [showModal, setShowModal] = useState(false)
@@ -25,12 +26,12 @@ export default function Header() {
 
     return (
         <>
-            <header>
-                <div className="header-button-container">
+            <HeaderElement>
+                <HeaderButtonsContainer>
                     <HeaderButton onClick={handleOpenModal} text="Registrar producto" />
                     <HeaderButton onClick={handleLogout} text="Cerrar sesión" />
-                </div>
-            </header>
+                </HeaderButtonsContainer>
+            </HeaderElement>
             {showModal && <Modal onClose={handleCloseModal}>
                 <RegisterProductForm />
             </Modal>}

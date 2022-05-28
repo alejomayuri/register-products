@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import useFormData from '../../hooks/useFormData'
 import useRegisterProduct from '../../hooks/useRegisterProduct'
+import ModalTitle from '../ModalTitle'
+import AuthForm from '../AuthForm'
+import Label from '../Label'
+import Input from '../Input'
+import FormTextarea from '../FormTextarea'
+import PreviousImage from '../PreviousImage'
+import FormButton from '../FormButton'
+import LoadingText from '../LoadingText'
 
 export default function RegisterProductForm() {
 
@@ -27,27 +35,27 @@ export default function RegisterProductForm() {
         <>
             {
                 showForm
-                    ? <div className='form-container'>
-                        <h2 className='modal-title'>Registrar producto</h2>
-                        <form className="main-form modal-form" onSubmit={handleSubmit}>
-                            <label htmlFor="name">Nombre</label>
-                            <input required type="text" name='name' onChange={handleOnChange} />
-                            <label htmlFor="description">Descripción</label>
-                            <textarea required type="text" name='description' onChange={handleOnChange} />
-                            <label htmlFor="price">Precio</label>
-                            <input required type="text" name='price' onChange={handleOnChange} />
-                            <label htmlFor="foto">Foto</label>
-                            <img className="prevImg" src={prevImage} alt="" />
+                    ? <div>
+                        <ModalTitle text='Registrar producto' />
+                        <AuthForm onSubmit={handleSubmit}>
+                            <Label htmlFor='name' text='Nombre' />
+                            <Input type='text' name='name' onChange={handleOnChange} />
+                            <Label htmlFor='description' text='Descripción' />
+                            <FormTextarea type='text' name='description' onChange={handleOnChange} />
+                            <Label htmlFor='price' text='Precio' />
+                            <Input type='text' name='price' onChange={handleOnChange} />
+                            <Label htmlFor='image' text='Imagen' />
+                            <PreviousImage prevImage={prevImage} />
                             {showProgress && <progress value={uploatValue} max="100" />}
-                            <input required type="file" name='foto' onChange={handleOnChangeImg} />
-                            <input className='submit-btn modal-submit-button' disabled={disabledButton ? true : false} type="submit" value='Registrar producto' />
-                        </form>
+                            <Input type="file" name='image' onChange={handleOnChangeImg} />
+                            <FormButton type='submit' value='Registrar producto' disabled={disabledButton} />
+                        </AuthForm>
                     </div>
                     : <>
                         {
                             loading
-                                ? <p className='loading-text'>Registrando producto...</p>
-                                : <p className='loading-text'>Producto registrado :D</p>
+                                ? <LoadingText text='Registrando producto...' />
+                                : <LoadingText text='Producto registrado :D' />
                         }
                     </>
             }

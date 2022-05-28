@@ -3,6 +3,14 @@ import useFormData from '../../hooks/useFormData'
 import useEdit from '../../hooks/useEdit'
 import useDelete from '../../hooks/useDelete'
 import DeleatProductButton from '../DeleteProductButton'
+import ModalTitle from '../ModalTitle'
+import AuthForm from '../AuthForm'
+import Label from '../Label'
+import Input from '../Input'
+import FormTextarea from '../FormTextarea'
+import PreviousImage from '../PreviousImage'
+import FormButton from '../FormButton'
+import LoadingText from '../LoadingText'
 
 export default function EditAndDeletForm({
     id,
@@ -48,32 +56,32 @@ export default function EditAndDeletForm({
         <>
             {
                 showForm
-                    ? <div className='form-container'>
-                        <h2 className='modal-title'>Editar producto</h2>
-                        <form className="main-form modal-form" onSubmit={handleSubmit}>
-                            <label htmlFor="name">Nombre</label>
-                            <input required type="text" name='name' value={formData.name} onChange={handleOnChange} />
-                            <label htmlFor="description">Descripción</label>
-                            <textarea required type="text" name='description' value={formData.description} onChange={handleOnChange} />
-                            <label htmlFor="price">Precio</label>
-                            <input required type="text" name='price' value={formData.price} onChange={handleOnChange} />
-                            <label htmlFor="foto">Foto</label>
-                            <img className="prevImg" src={prevImage} alt="" />
+                    ? <div>
+                        <ModalTitle text='Editar producto' />
+                        <AuthForm onSubmit={handleSubmit}>
+                            <Label htmlFor='name' text='Nombre' />
+                            <Input type='text' name='name' onChange={handleOnChange} value={formData.name} />
+                            <Label htmlFor='description' text='Descripción' />
+                            <FormTextarea type='text' name='description' onChange={handleOnChange} value={formData.description} />
+                            <Label htmlFor='price' text='Precio' />
+                            <Input type='text' name='price' onChange={handleOnChange} value={formData.price} />
+                            <Label htmlFor='image' text='Imagen' />
+                            <PreviousImage prevImage={prevImage} />
                             {showProgress && <progress value={uploatValue} max="100" />}
-                            <input type="file" name='foto' onChange={handleOnChangeImg} />
-                            <input className='submit-btn modal-submit-button' type="submit" value='Editar producto' />
-                        </form>
-                        <DeleatProductButton deleteProduct={handleDelete} />
+                            <Input required={false} type="file" name='image' onChange={handleOnChangeImg} />
+                            <FormButton type='submit' value='Editar producto' />
+                        </AuthForm>
+                        <DeleatProductButton deleteProduct={handleDelete} text={'Eliminar producto'} />
                     </div>
                     : <>
                         {
                             message
                                 ?   loading
-                                    ? <p className='loading-text'>Editando producto...</p>
-                                    : <p className='loading-text'>Producto Editado :D</p>
+                                    ? <LoadingText text='Editando producto..' />
+                                    : <LoadingText text='Producto Editado :D' />
                                 :   loadingDelete
-                                    ? <p className='loading-text'>Eliminando producto...</p>
-                                    : <p className='loading-text'>Producto eliminado</p>
+                                    ? <LoadingText text='Eliminando producto...' />
+                                    : <LoadingText text='Producto eliminado' />
                         }
                     </>
             }

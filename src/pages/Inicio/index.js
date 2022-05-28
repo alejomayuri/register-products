@@ -1,34 +1,33 @@
 import Login from "../../components/Login";
 import SingUp from "../../components/SingUp";
 import { useState } from "react";
+import { InicioMain, InicioContainer, InicioFormContainer } from "./style";
+import AuthMessage from "../../components/AuthFormMessage";
 
 export default function Inicio() {
     const [auth, setAuth] = useState(true);
+    const handleChange = () => {
+        setAuth(!auth);
+    }
     return (
         <>
-            <div className="inicio">
-                <div className="incio-container">
-                    <div className="main-form-container main-form-container-inicio">
+            <InicioMain>
+                <InicioContainer>
+                    <InicioFormContainer>
                         {
                             auth
                                 ? <div>
                                     <Login />
-                                    <div className="auth-msn">
-                                        <p>¿No estás registrado?</p>
-                                        <button onClick={() => setAuth(false)}><strong>Regístrate</strong></button>
-                                    </div>
+                                    <AuthMessage onclick={handleChange} text='¿No estás registrado?' textButton='Regístrate' />
                                 </div>
                                 : <div>
                                     <SingUp />
-                                    <div className="auth-msn">
-                                        <p>¿Ya tienes una cuenta?</p>
-                                        <button onClick={() => setAuth(true)}><strong>Inicia sesión</strong></button>
-                                    </div>
+                                    <AuthMessage onclick={handleChange} text='¿Ya tienes una cuenta?' textButton='Inicia sesión' />
                                 </div>
                         }
-                    </div>
-                </div>
-            </div>
+                    </InicioFormContainer>
+                </InicioContainer>
+            </InicioMain>
         </>
     )
 }

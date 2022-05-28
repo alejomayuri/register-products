@@ -1,7 +1,8 @@
-export default function DeleatProductButton ({deleteProduct}) {
+import { DeleteProductButtonStyled } from "./style"
+export default function DeleatProductButton ({deleteProduct, text}) {
     return (
         <>
-            <button onClick={deleteProduct} className='delete-product-button'>Eliminar producto</button>
+            <DeleteProductButtonStyled onClick={deleteProduct} className='delete-product-button'>{text}</DeleteProductButtonStyled>
         </>
     )
 }

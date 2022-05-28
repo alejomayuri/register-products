@@ -1,5 +1,6 @@
 import useProducts from "../../hooks/useProducts"
 import Product from "../Product"
+import { ProductContainer } from "./style"
 
 export default function ListOfProducts() {
     const { products, loading } = useProducts()
@@ -11,7 +12,7 @@ export default function ListOfProducts() {
             {
                 products.length === 0 && !loading && <h2>No tienes productos registrados</h2>
             }
-            <div className="productContainer">
+            <ProductContainer>
                 {loading ? <p>Cargando productos...</p>
                     : products.map(product => (
                         <Product
@@ -23,7 +24,7 @@ export default function ListOfProducts() {
                             price={product.price}
                         />
                     ))}
-            </div>
+            </ProductContainer>
         </>
     )
 }
