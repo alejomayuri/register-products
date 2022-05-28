@@ -16,4 +16,4 @@ You may also see any lint errors in the console.
 
 ### `Backend`
 
-Este proyecto utiliza el servicio [https://firebase.google.com/?hl=es-419&gclid=CjwKCAjw7cGUBhA9EiwArBAvohu_8poVcFmgvq5iD-UuyVb4-UIaCd8xZZ9mez9EYa_OZd_3eSmITBoC9KMQAvD_BwE&gclsrc=aw.ds](Firebase) de Google como backennd
+Este proyecto utiliza el servicio [https://firebase.google.com/](Firebase) de Google como backennd
