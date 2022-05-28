@@ -1,4 +1,3 @@
-import './Product.css'
 import Modal from '../Modal'
 import { useState } from 'react'
 import EditAndDeletForm from '../EditAndDeletForm'
@@ -22,7 +21,7 @@ export default function Product({ id, name, description, price, image }) {
         <>
             <div onMouseEnter={handleOptions} onMouseLeave={handleOptions} className="product">
                 {
-                    showOptions && <button onClick={handleOpenModal} className='optionBtn'>︙</button>
+                    showOptions && <button onClick={handleOpenModal} className='open-product-modal-button'>︙</button>
                 }
                 <h3>{name}</h3>
                 <img src={image} alt={name} />

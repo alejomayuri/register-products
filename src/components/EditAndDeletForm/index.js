@@ -1,4 +1,3 @@
-import './EditAndDeleteForm.css'
 import { useState } from 'react'
 import useFormData from '../../hooks/useFormData'
 import useEdit from '../../hooks/useEdit'
@@ -49,9 +48,9 @@ export default function EditAndDeletForm({
         <>
             {
                 showForm
-                    ? <>
-                        <h2 className='registrar-titulo'>Editar producto</h2>
-                        <form className="registerProduct-form" onSubmit={handleSubmit}>
+                    ? <div className='form-container'>
+                        <h2 className='modal-title'>Editar producto</h2>
+                        <form className="main-form modal-form" onSubmit={handleSubmit}>
                             <label htmlFor="name">Nombre</label>
                             <input required type="text" name='name' value={formData.name} onChange={handleOnChange} />
                             <label htmlFor="description">Descripción</label>
@@ -62,19 +61,19 @@ export default function EditAndDeletForm({
                             <img className="prevImg" src={prevImage} alt="" />
                             {showProgress && <progress value={uploatValue} max="100" />}
                             <input type="file" name='foto' onChange={handleOnChangeImg} />
-                            <input className='submitProductBtn' type="submit" value='Editar producto' />
+                            <input className='submit-btn modal-submit-button' type="submit" value='Editar producto' />
                         </form>
                         <DeleatProductButton deleteProduct={handleDelete} />
-                    </>
+                    </div>
                     : <>
                         {
                             message
                                 ?   loading
-                                    ? <p>Actualizando producto...</p>
-                                    : <p>Producto actualizado</p>
+                                    ? <p className='loading-text'>Editando producto...</p>
+                                    : <p className='loading-text'>Producto Editado :D</p>
                                 :   loadingDelete
-                                    ? <p>Eliminando producto...</p>
-                                    : <p>Producto eliminado</p>
+                                    ? <p className='loading-text'>Eliminando producto...</p>
+                                    : <p className='loading-text'>Producto eliminado</p>
                         }
                     </>
             }

@@ -1,11 +1,10 @@
-import './Modal.css'
 import ReactDOM from 'react-dom'
 
 function Modal({ children, onClose }) {
     return (
         <div className="modal">
             <div className="modal-content">
-                <button className="btn" onClick={onClose}>X</button>
+                <button className="modal-button" onClick={onClose}>X</button>
                 {children}
             </div>
         </div>

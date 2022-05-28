@@ -1,4 +1,3 @@
-import './RegisterProductForm.css'
 import { useState } from 'react'
 import useFormData from '../../hooks/useFormData'
 import useRegisterProduct from '../../hooks/useRegisterProduct'
@@ -28,9 +27,9 @@ export default function RegisterProductForm() {
         <>
             {
                 showForm
-                    ? <>
-                        <h2 className='registrar-titulo'>Registrar producto</h2>
-                        <form className="registerProduct-form" onSubmit={handleSubmit}>
+                    ? <div className='form-container'>
+                        <h2 className='modal-title'>Registrar producto</h2>
+                        <form className="main-form modal-form" onSubmit={handleSubmit}>
                             <label htmlFor="name">Nombre</label>
                             <input required type="text" name='name' onChange={handleOnChange} />
                             <label htmlFor="description">Descripción</label>
@@ -41,14 +40,14 @@ export default function RegisterProductForm() {
                             <img className="prevImg" src={prevImage} alt="" />
                             {showProgress && <progress value={uploatValue} max="100" />}
                             <input required type="file" name='foto' onChange={handleOnChangeImg} />
-                            <input className='submitProductBtn' disabled={disabledButton ? true : false} type="submit" value='Registrar producto' />
+                            <input className='submit-btn modal-submit-button' disabled={disabledButton ? true : false} type="submit" value='Registrar producto' />
                         </form>
-                    </>
+                    </div>
                     : <>
                         {
                             loading
-                                ? <p>Actualizando producto...</p>
-                                : <p>Producto actualizado</p>
+                                ? <p className='loading-text'>Registrando producto...</p>
+                                : <p className='loading-text'>Producto registrado :D</p>
                         }
                     </>
             }

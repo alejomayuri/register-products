@@ -1,7 +1,7 @@
 export default function DeleatProductButton ({deleteProduct}) {
     return (
         <>
-            <button onClick={deleteProduct} className='deleteProductBtn'>Eliminar producto</button>
+            <button onClick={deleteProduct} className='delete-product-button'>Eliminar producto</button>
         </>
     )
 }

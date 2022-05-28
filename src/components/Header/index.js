@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import Modal from '../Modal'
-import './Header.css'
 import RegisterProductForm from '../RegisterProductForm'
-import useRegisterProduct from '../../hooks/useRegisterProduct'
+import HeaderButton from '../HeaderButton'
 
 export default function Header() {
     const [showModal, setShowModal] = useState(false)
@@ -27,9 +26,9 @@ export default function Header() {
     return (
         <>
             <header>
-                <div className="button-container">
-                    <button className='btn' onClick={handleOpenModal}>Registrar producto</button>
-                    <button className='btn' onClick={handleLogout}>Cerrar sesión</button>
+                <div className="header-button-container">
+                    <HeaderButton onClick={handleOpenModal} text="Registrar producto" />
+                    <HeaderButton onClick={handleLogout} text="Cerrar sesión" />
                 </div>
             </header>
             {showModal && <Modal onClose={handleCloseModal}>
